@@ -7,11 +7,6 @@ from service.coverage_service import CoverageService
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-
-
 @app.route('/coverage')
 def coverage_details():
     member_id = request.args.get('member_id')
@@ -23,7 +18,7 @@ def coverage_details():
         return json.dumps(coverage_service.calculate_coverage(member_id, coalesce_strategy))
     except Exception as e:
         print(e)
-        return 'Exception occurred '+str(e)
+        return 'Exception occurred ' + str(e)
 
 
 if __name__ == '__main__':
